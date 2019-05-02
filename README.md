@@ -1,3 +1,5 @@
+<img src="https://img.shields.io/circleci/project/github/PDMLab/express-http-problem-details.svg" /> <a href="https://join.slack.com/t/pdmlab-oss/shared_invite/enQtNjEyMjQ0MDY3NTczLTg1ZDc0YjQxMGE3MTcyYTdkODU1YjFmMTBiODE2ZTZiNDFkNjc1MWE4OTE4NWY0Y2YyMWYzYmNhZGY0NDAyYWY"><img src="https://img.shields.io/badge/Slack-join-green.svg?logo=slack" /></a>
+
 # HTTP Problem Details for express
 
 Based on `http-problem-details` ([repository](https://github.com/PDMLab/http-problem-details) | [npm](https://www.npmjs.com/package/http-problem-details)) and `http-problem-details-mapper` ([repository](https://github.com/PDMLab/http-problem-details-mapper) | [npm](https://www.npmjs.com/package/http-problem-details-mapper)), this library allows you to map your Node.js errors to HTTP Problem details according to [RFC7807](https://tools.ietf.org/html/rfc7807) by convention.
