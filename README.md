@@ -77,6 +77,8 @@ class MyMappingStrategy implements IMappingStrategy {
 ```
 
 Finally, create an instance of `MyMappingStrategy` and register everything in your `app`.
+Notice that the `HttpProblemResponse` must come last. A global error logger would
+precede it and forward the error to the `next` function.
 
 ```typescript
 const strategy = new MyMappingStrategy(
@@ -85,11 +87,15 @@ const strategy = new MyMappingStrategy(
 
 
 const server = express()
-server.use(HttpProblemResponse({strategy}))
 
 server.get('/', async (req: express.Request, res: express.Response): Promise<any> => {
   return res.send(new NotFoundError({type: 'customer', id: '123' }))
 })
+server.use(function logErrors (err, req, res, next) {
+  console.error(err.stack)
+  next(err)
+})
+server.use(HttpProblemResponse({strategy}))
 
 server.listen(3000)
 ```
@@ -187,6 +193,8 @@ class MyMappingStrategy extends MappingStrategy {
 ```
 
 Finally, create an instance of `MyMappingStrategy` and register everything in your `app`.
+Notice that the `HttpProblemResponse` must come last. A global error logger would
+precede it and forward the error to the `next` function.
 
 ```js
 const strategy = new MyMappingStrategy(
@@ -195,11 +203,15 @@ const strategy = new MyMappingStrategy(
 
 
 const server = express()
-server.use(HttpProblemResponse({strategy}))
 
 server.get('/', async (req, res) => {
   return res.send(new NotFoundError({type: 'customer', id: '123' }))
 })
+server.use(function logErrors (err, req, res, next) {
+  console.error(err.stack)
+  next(err)
+})
+server.use(HttpProblemResponse({strategy}))
 
 server.listen(3000)
 ```
