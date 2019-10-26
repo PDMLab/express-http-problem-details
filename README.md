@@ -44,6 +44,9 @@ class NotFoundError extends Error {
 Next, you implement an `IErrorMapper` (noticed we cheated? Instead of the `ErrorMapper` class, in TypeScript you can use an `interface`):
 
 ```typescript
+import { ProblemDocument } from 'http-problem-details'
+import { IErrorMapper } from 'http-problem-details-mapper'
+
 class NotFoundErrorMapper implements IErrorMapper {
   public error: string = NotFoundError.name;
 
@@ -57,30 +60,13 @@ class NotFoundErrorMapper implements IErrorMapper {
 }
 ```
 
-Then, create the `IMappingStrategy` implementation:
+Finally, create an instance of `ExpressMappingStrategy` to hold the mappers and register everything in your `app`.
 
 ```typescript
-class MyMappingStrategy implements IMappingStrategy {
-  public registry: MapperRegistry;
+import { ExpressMappingStrategy, HttpProblemResponse } from 'express-http-problem-details'
+import { MapperRegistry } from 'http-problem-details-mapper'
 
-  public constructor (registry: MapperRegistry) {
-    this.registry = registry
-  }
-
-  public map (error: Error): ProblemDocument {
-    const err = error
-    const errorMapper = this.registry.getMapper(error)
-    if (errorMapper) {
-      return errorMapper.mapError(err)
-    }
-  }
-}
-```
-
-Finally, create an instance of `MyMappingStrategy` and register everything in your `app`.
-
-```typescript
-const strategy = new MyMappingStrategy(
+const strategy = new ExpressMappingStrategy(
     new MapperRegistry()
       .registerMapper(new NotFoundErrorMapper()))
 
@@ -154,6 +140,9 @@ class NotFoundError extends Error {
 Next, you extend the  `ErrorMapper` class:
 
 ```js
+import { ProblemDocument } from 'http-problem-details'
+import { IErrorMapper } from 'http-problem-details-mapper'
+
 class NotFoundErrorMapper extends ErrorMapper {
   constructor() {
     this.error = NotFoundError.name;
@@ -169,28 +158,13 @@ class NotFoundErrorMapper extends ErrorMapper {
 }
 ```
 
-Then, create the `MappingStrategy` implementation:
+Finally, create an instance of `ExpressMappingStrategy` to hold the mappers and register everything in your `app`.
 
 ```js
-class MyMappingStrategy extends MappingStrategy {
-  constructor (registry) {
-    this.registry = registry
-  }
+import { ExpressMappingStrategy, HttpProblemResponse } from 'express-http-problem-details'
+import { MapperRegistry } from 'http-problem-details-mapper'
 
-  map (error) {
-    const err = error
-    const errorMapper = this.registry.getMapper(error)
-    if (errorMapper) {
-      return errorMapper.mapError(err)
-    }
-  }
-}
-```
-
-Finally, create an instance of `MyMappingStrategy` and register everything in your `app`.
-
-```js
-const strategy = new MyMappingStrategy(
+const strategy = new ExpressMappingStrategy(
     new MapperRegistry()
       .registerMapper(new NotFoundErrorMapper()))
 
