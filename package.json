@@ -38,9 +38,9 @@
   },
   "homepage": "https://github.com/PDMLab/express-http-problem-details#readme",
   "peerDependencies": {
-    "express": "^4.16.4",
-    "http-problem-details": "0.1.0",
-    "http-problem-details-mapper": "0.1.0"
+    "express": "4.x",
+    "http-problem-details": "~0.1.2",
+    "http-problem-details-mapper": "~0.1"
   },
   "devDependencies": {
     "@types/express": "^4.16.1",
