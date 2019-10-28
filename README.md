@@ -22,123 +22,7 @@ yarn add http-problem-details http-problem-details-mapper express-http-problem-d
 
 The details of the mapping itself are described in `http-problem-details-mapper` ([repository](https://github.com/PDMLab/http-problem-details-mapper) | [npm](https://www.npmjs.com/package/http-problem-details-mapper))
 
-### TypeScript
-
-The typical workflow in TypeScript with `express-http-problem-details` is this:
-
-First, you implement an Error
-
-```typescript
-class NotFoundError extends Error {
-  public constructor (options: { type: string, id: string }) {
-    const { type, id } = options
-    super()
-    Error.captureStackTrace(this, this.constructor)
-    this.name = 'NotFoundError'
-    this.message = `${type} with id ${id} could not be found.`
-  }
-}
-```
-
-Next, you implement an `IErrorMapper` (noticed we cheated? Instead of the `ErrorMapper` class, in TypeScript you can use an `interface`):
-
-```typescript
-class NotFoundErrorMapper implements IErrorMapper {
-  public error: string = NotFoundError.name;
-
-  public mapError (error: Error): ProblemDocument {
-    return new ProblemDocument({
-      status: 404,
-      title: error.message,
-      type: 'http://tempuri.org/NotFoundError'
-    })
-  }
-}
-```
-
-Then, create the `IMappingStrategy` implementation:
-
-```typescript
-class MyMappingStrategy implements IMappingStrategy {
-  public registry: MapperRegistry;
-
-  public constructor (registry: MapperRegistry) {
-    this.registry = registry
-  }
-
-  public map (error: Error): ProblemDocument {
-    const err = error
-    const errorMapper = this.registry.getMapper(error)
-    if (errorMapper) {
-      return errorMapper.mapError(err)
-    }
-  }
-}
-```
-
-Finally, create an instance of `MyMappingStrategy` and register everything in your `app`.
-Notice that the `HttpProblemResponse` must come last. A global error logger would
-precede it and forward the error to the `next` function.
-
-```typescript
-const strategy = new MyMappingStrategy(
-    new MapperRegistry()
-      .registerMapper(new NotFoundErrorMapper()))
-
-
-const server = express()
-
-server.get('/', async (req: express.Request, res: express.Response): Promise<any> => {
-  return res.send(new NotFoundError({type: 'customer', id: '123' }))
-})
-server.use(function logErrors (err, req, res, next) {
-  console.error(err.stack)
-  next(err)
-})
-server.use(HttpProblemResponse({strategy}))
-
-server.listen(3000)
-```
-
-When GETting localhost:3000, the result will be like this:
-
-```bash
-HTTP/1.1 404 Not Found
-Connection: keep-alive
-Content-Length: 107
-Content-Type: application/problem+json; charset=utf-8
-Date: Wed, 24 Apr 2019 23:48:27 GMT
-ETag: W/"6b-dSoRnzOA0Ls+QaHyomC8H+uv7GQ"
-X-Powered-By: Express
-
-{
-    "status": 404,
-    "title": "customer with id 123 could not be found.",
-    "type": "http://tempuri.org/NotFoundError"
-}
-
-```
-
-When just returning a `return res.status(500).send();`, you'll get a response like this:
-
-```bash
-HTTP/1.1 500 Internal Server Error
-Connection: keep-alive
-Content-Length: 67
-Content-Type: application/problem+json; charset=utf-8
-Date: Thu, 25 Apr 2019 00:01:48 GMT
-ETag: W/"43-U3E8vFCP1+XTg1JqRHkrjQWiN60"
-X-Powered-By: Express
-
-{
-    "status": 500,
-    "title": "Internal Server Error",
-    "type": "about:blank"
-}
-
-```
-
-### JavaScript / ES2015
+### Example
 
 The typical workflow in JavaScript/ES2015 with `http-problem-details-mapper` is this:
 
@@ -150,7 +34,7 @@ class NotFoundError extends Error {
     const { type, id } = options
     super()
     Error.captureStackTrace(this, this.constructor)
-    this.name = 'NotFoundError'
+
     this.message = `${type} with id ${id} could not be found.`
   }
 }
@@ -159,9 +43,12 @@ class NotFoundError extends Error {
 Next, you extend the  `ErrorMapper` class:
 
 ```js
+import { ProblemDocument } from 'http-problem-details'
+import { ErrorMapper } from 'http-problem-details-mapper'
+
 class NotFoundErrorMapper extends ErrorMapper {
   constructor() {
-    this.error = NotFoundError.name;
+    super(NotFoundError)
   }
 
   mapError (error) {
@@ -174,30 +61,15 @@ class NotFoundErrorMapper extends ErrorMapper {
 }
 ```
 
-Then, create the `MappingStrategy` implementation:
-
-```js
-class MyMappingStrategy extends MappingStrategy {
-  constructor (registry) {
-    this.registry = registry
-  }
-
-  map (error) {
-    const err = error
-    const errorMapper = this.registry.getMapper(error)
-    if (errorMapper) {
-      return errorMapper.mapError(err)
-    }
-  }
-}
-```
-
-Finally, create an instance of `MyMappingStrategy` and register everything in your `app`.
+Finally, create an instance of `ExpressMappingStrategy` and register everything in your `app`.
 Notice that the `HttpProblemResponse` must come last. A global error logger would
 precede it and forward the error to the `next` function.
 
 ```js
-const strategy = new MyMappingStrategy(
+import { ExpressMappingStrategy, HttpProblemResponse } from 'express-http-problem-details'
+import { MapperRegistry } from 'http-problem-details-mapper'
+
+const strategy = new ExpressMappingStrategy(
     new MapperRegistry()
       .registerMapper(new NotFoundErrorMapper()))
 
