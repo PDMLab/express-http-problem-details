@@ -1,3 +1,4 @@
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 <img src="https://img.shields.io/circleci/project/github/PDMLab/express-http-problem-details.svg" /> <a href="https://join.slack.com/t/pdmlab-oss/shared_invite/enQtNjEyMjQ0MDY3NTczLTg1ZDc0YjQxMGE3MTcyYTdkODU1YjFmMTBiODE2ZTZiNDFkNjc1MWE4OTE4NWY0Y2YyMWYzYmNhZGY0NDAyYWY"><img src="https://img.shields.io/badge/Slack-join-green.svg?logo=slack" /></a>
 
 # HTTP Problem Details for express
@@ -61,7 +62,7 @@ class NotFoundErrorMapper extends ErrorMapper {
 }
 ```
 
-Finally, create an instance of `ExpressMappingStrategy` and register everything in your `app`.
+Finally, create an instance of `ExpressMappingStrategy` to hold the mappers and register everything in your `app`.
 Notice that the `HttpProblemResponse` must come last. A global error logger would
 precede it and forward the error to the `next` function.
 
@@ -147,6 +148,8 @@ If you want to contribute - we'd love it! Just open an issue to work against so 
 If you see a bug, please be so kind as to show how it's failing, and we'll do our best to get it fixed quickly.
 
 Before sending a PR, please [create an issue](https://github.com/PDMLab/http-problem-details/issues/new) to introduce your idea and have a reference for your PR.
+
+We're using [conventional commits](https://www.conventionalcommits.org), so please use it for your commits as well.
 
 Also please add tests and make sure to run `npm run lint-ts` or `yarn lint-ts`.
 
