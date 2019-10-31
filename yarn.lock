@@ -1416,15 +1416,15 @@ hosted-git-info@^2.1.4:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"
   integrity sha512-7T/BxH19zbcCTa8XkMlbK5lTo1WtgkFi3GvdWEyNuc4Vex7/9Dqbnpsf4JMydcfj9HCg4zUWFTL3Za6lapg5/w==
 
-http-problem-details-mapper@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/http-problem-details-mapper/-/http-problem-details-mapper-0.1.0.tgz#db82d501af29f2ffcab94b5404049e71940e0340"
-  integrity sha512-2YPia8CY0yzNl32oyILNUyBLLLVzWRLADsZPO3/I/3bSx2vg3imU2O1O97tcldZ0mVJlreW2t8YTLlGkfQ6AFw==
+http-problem-details-mapper@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/http-problem-details-mapper/-/http-problem-details-mapper-0.1.2.tgz#2682df4ea28626f28b6fe0bed7fb679e74e80d71"
+  integrity sha512-UKLWWzKIBowHc8DX1nG7rXzwFM6yehPoE4kTkgbHsRA/+UPywvkWJ3FVpWdqDDz2QSshZUxysx4ubsTIxt53iA==
 
-http-problem-details@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/http-problem-details/-/http-problem-details-0.1.0.tgz#8c706540a266a66b7f7b0f0ec84216867da19984"
-  integrity sha512-BYVxAu6tDq8ejiYWTpuSYLaEb8x8eRKWArejNkOLcIxEuRmttvDvjHNTCmoRDfRqD5EWrdVmFREQOBlKT+KAkQ==
+http-problem-details@^0.1.2:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/http-problem-details/-/http-problem-details-0.1.4.tgz#10c903a4b9d35eed9ad85b2c8ae32eb31ba3177b"
+  integrity sha512-VRNHu3fGExc7HDs4FuDtTqp5W+l8ONa0js+rdZgnKBv+AIq6BDhSSbo+8LFsPJNpM9Tu9h/gg+SmNDyH8EXjQA==
 
 husky@^3.0.9:
   version "3.0.9"
