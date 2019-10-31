@@ -8,13 +8,13 @@ Based on `http-problem-details` ([repository](https://github.com/PDMLab/http-pro
 ## Installation
 
 ```
-npm install http-problem-details http-problem-details-mapper express-http-problem-details
+npm install express express-http-problem-details
 ```
 
 or
 
 ```
-yarn add http-problem-details http-problem-details-mapper express-http-problem-details
+yarn add express express-http-problem-details
 ```
 
 ## Usage
