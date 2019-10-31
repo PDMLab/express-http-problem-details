@@ -3,8 +3,8 @@ import { NextFunction } from 'connect'
 import { ErrorRequestHandler } from 'express-serve-static-core'
 import { IMappingStrategy } from 'http-problem-details-mapper'
 
-class HttpProblemResponseOptions {
-  public strategy: IMappingStrategy;
+interface HttpProblemResponseOptions {
+  strategy: IMappingStrategy
 }
 
 function HttpProblemResponse (options: HttpProblemResponseOptions): ErrorRequestHandler {
