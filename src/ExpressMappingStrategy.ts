@@ -8,11 +8,13 @@ export class ExpressMappingStrategy implements IMappingStrategy {
     this.registry = registry
   }
 
-  public map (error: any): ProblemDocument {
+  public map (error: any): ProblemDocument | null {
     const err = error
     const errorMapper = this.registry.getMapper(error)
     if (errorMapper) {
       return errorMapper.mapError(err)
     }
+
+    return null
   }
 }
