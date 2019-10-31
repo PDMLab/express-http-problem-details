@@ -13,8 +13,14 @@ function HttpProblemResponse (options: HttpProblemResponseOptions): ErrorRequest
   return function HttpProblemDetailsMiddleware (error: Error,
     request: express.Request,
     response: express.Response,
-    next: NextFunction): void { // eslint-disable-line @typescript-eslint/no-unused-vars
-    let problem = strategy.map(error)
+    next: NextFunction): void {
+    const problem = strategy.map(error)
+
+    if (!problem) {
+      next(error)
+      return
+    }
+
     if (!problem.detail && error.message) {
       problem.detail = error.message
     }
