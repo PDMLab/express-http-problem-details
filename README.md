@@ -1,4 +1,4 @@
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![Join the chat at https://gitter.im/pdmlab/express-http-problem-details](https://badges.gitter.im/pdmlab/express-http-problem-details.svg)](https://gitter.im/pdmlab/express-http-problem-details?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <img src="https://img.shields.io/circleci/project/github/PDMLab/express-http-problem-details.svg" /> <a href="https://join.slack.com/t/pdmlab-oss/shared_invite/enQtNjEyMjQ0MDY3NTczLTg1ZDc0YjQxMGE3MTcyYTdkODU1YjFmMTBiODE2ZTZiNDFkNjc1MWE4OTE4NWY0Y2YyMWYzYmNhZGY0NDAyYWY"><img src="https://img.shields.io/badge/Slack-join-green.svg?logo=slack" /></a>
 
 # HTTP Problem Details for express
