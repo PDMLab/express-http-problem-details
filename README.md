@@ -67,10 +67,10 @@ Notice that the `HttpProblemResponse` must come last. A global error logger woul
 precede it and forward the error to the `next` function.
 
 ```js
-import { ExpressMappingStrategy, HttpProblemResponse } from 'express-http-problem-details'
-import { MapperRegistry } from 'http-problem-details-mapper'
+import { HttpProblemResponse } from 'express-http-problem-details'
+import { DefaultMappingStrategy, MapperRegistry } from 'http-problem-details-mapper'
 
-const strategy = new ExpressMappingStrategy(
+const strategy = new DefaultMappingStrategy(
     new MapperRegistry()
       .registerMapper(new NotFoundErrorMapper()))
 
