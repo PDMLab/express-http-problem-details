@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/PDMLab/express-http-problem-details/compare/v0.1.5...v0.2.0) (2019-11-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* `DefaultMappingStrategy` from `http-problem-details-mapper` or your own implementation of `IMappingStrategy` / `MappingStrategy` has to be used now.
+
+* remove express mapping strategy and tests ([ec2b568](https://github.com/PDMLab/express-http-problem-details/commit/ec2b568910d75d96930561b8b7ffea4a64c9d81f))
+
 ### [0.1.5](https://github.com/PDMLab/express-http-problem-details/compare/v0.1.4...v0.1.5) (2019-11-01)
 
 
