@@ -27,7 +27,7 @@ function HttpProblemResponse (options: HttpProblemResponseOptions): ErrorRequest
 
     response.statusCode = problem.status
     response.setHeader('Content-Type', 'application/problem+json')
-    response.send(JSON.stringify(problem))
+    response.json(problem)
   }
 }
 
