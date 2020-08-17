@@ -1,6 +1,6 @@
 {
   "name": "express-http-problem-details",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "HTTP problem details (RFC 7807) content negotiation for express",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
